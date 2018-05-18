@@ -2,7 +2,7 @@
   "context-menu": {
     "atom-text-editor": [
       {
-        "label": "Toggle spotify-neon",
+        "label": "Toggle Spotify Neon",
         "command": "spotify-neon:toggle"
       }
     ]
@@ -12,7 +12,7 @@
       "label": "Packages",
       "submenu": [
         {
-          "label": "spotify-neon",
+          "label": "Spotify Neon",
           "submenu": [
             {
               "label": "Toggle",
