@@ -1,0 +1,18 @@
+{
+  "name": "spotify-neon",
+  "main": "./lib/spotify-neon",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "spotify-neon:toggle"
+  },
+  "repository": "https://github.com/atom/spotify-neon",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}
