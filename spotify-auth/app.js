@@ -9,7 +9,6 @@
  var fs = require('fs')
 var data = fs.readFileSync(__dirname + "/public/index.html");
  require("http").createServer(function (req, res) {
-
-    res.end();
-  }); 
+    res.write(data)
+    res.end(); 
  }).listen(7888)

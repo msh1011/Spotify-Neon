@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Example of the Implicit Grant flow with Spotify</title>
+    <title>Spotify Neon</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <style type="text/css">
       #login, #loggedin {
@@ -11,17 +11,16 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        width: 500px;
+        width: 60%;
+      }
+      input {
+        width: 100%;
       }
     </style>
   </head>
 
   <body>
     <div class="container">
-      <div id="login">
-        <h1>This is an example of the Implicit Grant flow</h1>
-        <button id="login-button" class="btn btn-primary">Log in with Spotify</button>
-      </div>
       <div id="loggedin">
         <div id="user-profile">
         </div>
@@ -38,13 +37,11 @@
         </div>
         <div class="media-body">
           <dl class="dl-horizontal">
-            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
+            <dt>Name</dt><dd class="clearfix">{{display_name}}</dd>
             <dt>Id</dt><dd>{{id}}</dd>
             <dt>Email</dt><dd>{{email}}</dd>
-            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
-            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
-            <dt>Country</dt><dd>{{country}}</dd>
+            <dt>Access Token</dt><dd><input type="text" value={{access_token}} id="access_token_text"></input></dd>
+            <dt></dt><dd><button onclick="copyAccessToken()">Copy</button></dd>
           </dl>
         </div>
       </div>
@@ -60,6 +57,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
+      function copyAccessToken() {
+        var copyText = document.getElementById("access_token_text");
+        console.log(copyText);
+        copyText.select();
+        document.execCommand("copy");
+      }
       (function() {
 
         var stateKey = 'spotify_auth_state';
@@ -77,22 +80,9 @@
           }
           return hashParams;
         }
-
-        /**
-         * Generates a random string containing numbers and letters
-         * @param  {number} length The length of the string
-         * @return {string} The generated string
-         */
-        function generateRandomString(length) {
-          var text = '';
-          var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-          for (var i = 0; i < length; i++) {
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-          }
-          return text;
-        };
-
+        
+        
+        
         var userProfileSource = document.getElementById('user-profile-template').innerHTML,
             userProfileTemplate = Handlebars.compile(userProfileSource),
             userProfilePlaceholder = document.getElementById('user-profile');
@@ -110,7 +100,6 @@
         if (access_token && (state == null)) {
           alert('There was an error during the authentication');
         } else {
-          alert(access_token)
           localStorage.removeItem(stateKey);
           if (access_token) {
             $.ajax({
@@ -119,36 +108,14 @@
                   'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
+                  response['access_token'] = access_token;
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
-
-                  $('#login').hide();
                   $('#loggedin').show();
                 }
             });
           } else {
-              $('#login').show();
               $('#loggedin').hide();
           }
-
-          document.getElementById('login-button').addEventListener('click', function() {
-
-            var client_id = '440c317502fc46c6b8fd0b173c49c3b9'; // Your client id
-            var redirect_uri = 'http://localhost:7888/callback/'; // Your redirect uri
-
-            var state = generateRandomString(16);
-
-            localStorage.setItem(stateKey, state);
-            var scope = 'user-read-private user-read-email';
-
-            var url = 'https://accounts.spotify.com/authorize';
-            url += '?response_type=token';
-            url += '&client_id=' + encodeURIComponent(client_id);
-            url += '&scope=' + encodeURIComponent(scope);
-            url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
-            url += '&state=' + encodeURIComponent(state);
-
-            window.location = url;
-          }, false);
         }
       })();
     </script>
