@@ -4,7 +4,7 @@ var fs = require('fs');
 var client_id = '440c317502fc46c6b8fd0b173c49c3b9'; 
 var client_secret = '62bed183903b4c7994ec27683c9fa197'; 
 var redirect_uri = 'http://localhost:7888/callback/';
-
+var data = fs.readFileSync(__dirname + "/public/index.html");
 require("http").createServer(function (req, res) {
     console.log(req)
     if(req.url.startsWith('/callback')){
@@ -63,5 +63,6 @@ require("http").createServer(function (req, res) {
             '&state=' + encodeURIComponent(123);
         res.writeHead(302, {'Location': auth});
     }
+    res.write(data);
     res.end()
  }).listen(7888)
