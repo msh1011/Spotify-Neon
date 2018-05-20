@@ -1,5 +1,5 @@
 {
-  "atom-workspace": {
-    "ctrl-alt-o": "spotify-neon:toggle"
+  "atom-workspace, atom-text-editor": {
+    "ctrl-space": "spotify-neon:toggle"
   }
 }
