@@ -7,7 +7,7 @@ export default class SpotifyNeonBackground {
   }
 
   fetchData(){
-    var access_token = atom.config.get("spotify-neon:access_token");
+    var access_token = atom.config.get("spotify-neon.access_token");
     if(access_token == "" || access_token == undefined){
       return;
     }  
@@ -26,20 +26,20 @@ export default class SpotifyNeonBackground {
         fetch("http://localhost:7888/refresh")
         return;
       }
-      atom.config.set("spotify-neon:song_name", response.item.name);
+      atom.config.set("spotify-neon.song_name", response.item.name);
       var artists = ""
       for(var name in response.item.artists){
         artists += response.item.artists[name].name + ", "
       }
       artists = artists.slice(0, -2);
-      atom.config.set("spotify-neon:song_artist", artists);
-      atom.config.set("spotify-neon:song_art_url", response.item.album.images[0].url);
-      if(!atom.config.get("spotify-neon:inform-outdated")){
-        atom.config.set("spotify-neon:song_isplaying", response.is_playing);
+      atom.config.set("spotify-neon.song_artist", artists);
+      atom.config.set("spotify-neon.song_art_url", response.item.album.images[0].url);
+      if(!atom.config.get("spotify-neon.inform-outdated")){
+        atom.config.set("spotify-neon.song_isplaying", response.is_playing);
       }
-      atom.config.set("spotify-neon:inform-outdated", false);
-      atom.config.set("spotify-neon:song_progress", response.progress_ms);
-      atom.config.set("spotify-neon:song_length", response.item.duration_ms);
+      atom.config.set("spotify-neon.inform-outdated", false);
+      atom.config.set("spotify-neon.song_progress", response.progress_ms);
+      atom.config.set("spotify-neon.song_length", response.item.duration_ms);
     });
   }
   

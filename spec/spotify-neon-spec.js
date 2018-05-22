@@ -9,10 +9,10 @@ describe('SpotifyNeon', () => {
     activationPromise = atom.packages.activatePackage('spotify-neon');
   });
 
-  describe('when the spotify-neon:toggle event is triggered', () => {
+  describe('when the spotify-neon.toggle event is triggered', () => {
     it('hides and shows the song information', () => {
       expect(workspaceElement.querySelector('.spotify-neon')).not.toExist();
-      atom.commands.dispatch(workspaceElement, 'spotify-neon:toggle');
+      atom.commands.dispatch(workspaceElement, 'spotify-neon.toggle');
 
       waitsForPromise(() => {
         return activationPromise;
@@ -26,7 +26,7 @@ describe('SpotifyNeon', () => {
 
         let spotifyNeonPanel = atom.workspace.panelForItem(spotifyNeonElement);
         expect(spotifyNeonPanel.isVisible()).toBe(true);
-        atom.commands.dispatch(workspaceElement, 'spotify-neon:toggle');
+        atom.commands.dispatch(workspaceElement, 'spotify-neon.toggle');
         expect(spotifyNeonPanel.isVisible()).toBe(false);
       });
     });
@@ -35,7 +35,7 @@ describe('SpotifyNeon', () => {
       jasmine.attachToDOM(workspaceElement);
 
       expect(workspaceElement.querySelector('.spotify-neon')).not.toExist();
-      atom.commands.dispatch(workspaceElement, 'spotify-neon:toggle');
+      atom.commands.dispatch(workspaceElement, 'spotify-neon.toggle');
 
       waitsForPromise(() => {
         return activationPromise;
@@ -44,7 +44,7 @@ describe('SpotifyNeon', () => {
       runs(() => {
         let spotifyNeonElement = workspaceElement.querySelector('.spotify-neon');
         expect(spotifyNeonElement).toBeVisible();
-        atom.commands.dispatch(workspaceElement, 'spotify-neon:toggle');
+        atom.commands.dispatch(workspaceElement, 'spotify-neon.toggle');
         expect(spotifyNeonElement).not.toBeVisible();
       });
     });

@@ -26,13 +26,13 @@ require("http").createServer(function (req, res) {
         .then(response => response.json())
         .catch(error => console.error('Error:', error))
         .then(response => {
-            atom.config.set("spotify-neon:access_token", response.access_token)
-            atom.config.set("spotify-neon:refresh_token", response.refresh_token)
+            atom.config.set("spotify-neon.access_token", response.access_token)
+            atom.config.set("spotify-neon.refresh_token", response.refresh_token)
         });
     }
     if(req.url.startsWith('/refresh')){
         var refreshUrl = 'https://accounts.spotify.com/api/token';
-        var bodyUri = 'refresh_token=' + encodeURIComponent(atom.config.get("spotify-neon:refresh_token")) +
+        var bodyUri = 'refresh_token=' + encodeURIComponent(atom.config.get("spotify-neon.refresh_token")) +
                         '&grant_type=' + encodeURIComponent("refresh_token");
         var refreshHeader = {
             method: 'POST',
@@ -48,8 +48,8 @@ require("http").createServer(function (req, res) {
         .catch(error => console.error('Error:', error))
         .then(response => {
           console.log(response)
-            atom.config.set("spotify-neon:access_token", response.access_token)
-            atom.config.set("spotify-neon:refresh_token", response.refresh_token)
+            atom.config.set("spotify-neon.access_token", response.access_token)
+            atom.config.set("spotify-neon.refresh_token", response.refresh_token)
         });
     }
     if(req.url.startsWith('/login')){
