@@ -21,7 +21,6 @@ require("http").createServer(function (req, res) {
           method: 'POST',
           json: true,
         };
-        console.log(authUrl, authHeader);
         fetch(authUrl, authHeader)
         .then(response => response.json())
         .catch(error => console.error('Error:', error))
