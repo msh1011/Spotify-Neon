@@ -26,9 +26,13 @@ export default class SpotifyNeonBackground {
         fetch("http://localhost:7888/refresh")
         return;
       }
-      // console.log(response)
       atom.config.set("spotify-neon:song_name", response.item.name);
-      atom.config.set("spotify-neon:song_artist", response.item.artists[0].name);
+      var artists = ""
+      for(var name in response.item.artists){
+        artists += response.item.artists[name].name + ", "
+      }
+      artists = artists.slice(0, -2);
+      atom.config.set("spotify-neon:song_artist", artists);
       atom.config.set("spotify-neon:song_art_url", response.item.album.images[0].url);
       if(!atom.config.get("spotify-neon:inform-outdated")){
         atom.config.set("spotify-neon:song_isplaying", response.is_playing);

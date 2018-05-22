@@ -1,12 +1,11 @@
 
 
 var fs = require('fs');
-var client_id = '440c317502fc46c6b8fd0b173c49c3b9'; 
-var client_secret = '62bed183903b4c7994ec27683c9fa197'; 
+var client_id = '440c317502fc46c6b8fd0b173c49c3b9';
+var client_secret = '62bed183903b4c7994ec27683c9fa197';
 var redirect_uri = 'http://localhost:7888/callback/';
 var data = fs.readFileSync(__dirname + "/public/index.html");
 require("http").createServer(function (req, res) {
-    console.log(req)
     if(req.url.startsWith('/callback')){
         var code = /[A-Za-z0-9\-\_]{358}/g.exec(req.url)[0];
         var authUrl = 'https://accounts.spotify.com/api/token';
