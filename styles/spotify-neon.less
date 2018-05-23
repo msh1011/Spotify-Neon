@@ -18,7 +18,44 @@
     background: none;
     border: none;
     position: absolute;
-    top: 5%;
-    right: 3%;
+    top: 0.3em;
+    right: 1em;
+  }
+  #button_container{
+    position: relative;
+    margin-left: 16%;
+    left: 16em;
+    bottom: 1em
+  }
+  .current-playlist-songs{
+    margin-top: 2em;
+    height: 35em;
+    
+
+  }
+  .current-playlist-track{
+    border: none;
+    height: 2em;
+    line-height: 2em;
+    width: 100%;
+    float: left;
+    text-align: left;  
+    text-overflow: clip;
+    overflow: hidden;
+    font-size: 14px;
+    color: @text-color;
+    border-bottom: 1px solid lighten( @app-background-color, 10%);
+    border-top: 1px solid lighten( @app-background-color, 10%);
+    margin-bottom: -1px;
+    background: none
+  }
+  .current-playlist-track:hover {
+    background: none;
+    color: @text-color-highlight;
+  }
+  .current-playlist-track-name{
+    float: left;
+    width: 55%;
+    margin-right: 5%;
   }
 }

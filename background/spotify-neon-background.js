@@ -21,11 +21,13 @@ export default class SpotifyNeonBackground {
     fetch(playerUrl, playerHeader)
     .then(response => response.json())
     .then(response => {
+      // console.log(response)
       if(response.error != undefined){
         server = require("../spotify-auth/app")
         fetch("http://localhost:7888/refresh")
         return;
       }
+      atom.config.set("spotify-neon.current-playlist-url", response.context.href);
       atom.config.set("spotify-neon.song_name", response.item.name);
       var artists = ""
       for(var name in response.item.artists){
