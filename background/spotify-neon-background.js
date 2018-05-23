@@ -4,6 +4,10 @@ export default class SpotifyNeonBackground {
 
   constructor() {
     var timer = setInterval(this.fetchData, 1000);
+    var refresh = setInterval(() => {
+      server = require("../spotify-auth/app")
+      fetch("http://localhost:7888/refresh")
+    }, 1800000)
   }
 
   fetchData(){

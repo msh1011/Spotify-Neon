@@ -46,9 +46,11 @@ require("http").createServer(function (req, res) {
         .then(response => response.json())
         .catch(error => console.error('Error:', error))
         .then(response => {
-          console.log(response)
+           console.log(response)
             atom.config.set("spotify-neon.access_token", response.access_token)
-            atom.config.set("spotify-neon.refresh_token", response.refresh_token)
+            if(response.refresh_token != undefined){
+                atom.config.set("spotify-neon.refresh_token", response.refresh_token)
+            }
         });
     }
     if(req.url.startsWith('/login')){

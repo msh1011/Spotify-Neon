@@ -1,15 +1,43 @@
 @import "ui-variables";
+@import 'functions';
 
+.font ( 'icomoon', normal, normal, 'icomoon.ttf' );
 .spotify-neon {
-  button:hover {
+  #spotify_login:hover {
     background: lightgreen;
   }
-  button {
+  #spotify_login {
     color: black;
     font-size: 16px;
   }
   .icon {
     color: @text-color;
+    font-size: 2em;
+    text-align: left;
+    background: none;
+    border: none;
+    font-family: 'icomoon';    
+  }
+  .icon-next:before {
+    content: "\ea24";
+  }
+  .icon-pause:before {
+    content: "\ea1d";
+  }
+  .icon-play:before {
+    content: "\ea1c";
+  }
+  .icon-previous:before {
+    content: "\ea23";
+  }
+  #song_name, #song_artist{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 35%;
+    white-space: nowrap;
+    height: 1.5em;
+    margin-left: 17%;
+    margin-top: 2%;
   }
   #button_open_playlist {
     font-size: 1.5em;
@@ -30,8 +58,6 @@
   .current-playlist-songs{
     margin-top: 2em;
     height: 35em;
-    
-
   }
   .current-playlist-track{
     border: none;
