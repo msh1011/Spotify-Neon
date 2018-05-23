@@ -1,26 +1,18 @@
 {
   "context-menu": {
-    "atom-text-editor": [
-      {
-        "label": "Toggle Spotify Neon",
-        "command": "spotify-neon:toggle"
-      }
-    ]
+    "atom-text-editor": [{
+      "label": "Toggle Spotify Neon",
+      "command": "spotify-neon:toggle"
+    }]
   },
-  "menu": [
-    {
-      "label": "Packages",
-      "submenu": [
-        {
-          "label": "Spotify Neon",
-          "submenu": [
-            {
-              "label": "Toggle",
-              "command": "spotify-neon:toggle"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+  "menu": [{
+    "label": "Packages",
+    "submenu": [{
+      "label": "Spotify Neon",
+      "submenu": [{
+        "label": "Toggle",
+        "command": "spotify-neon:toggle"
+      }]
+    }]
+  }]
 }

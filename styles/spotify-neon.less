@@ -1,11 +1,11 @@
 @import "ui-variables";
 @import 'functions';
 
-.font ( 'icomoon', normal, normal, 'icomoon.ttf' );
 .spotify-neon {
   #spotify_login:hover {
     background: lightgreen;
   }
+
   #spotify_login {
     color: black;
     font-size: 16px;
@@ -16,21 +16,27 @@
     text-align: left;
     background: none;
     border: none;
-    font-family: 'icomoon';    
+    font-family: 'icomoon';
   }
+
   .icon-next:before {
     content: "\ea24";
   }
+
   .icon-pause:before {
     content: "\ea1d";
   }
+
   .icon-play:before {
     content: "\ea1c";
   }
+
   .icon-previous:before {
     content: "\ea23";
   }
-  #song_name, #song_artist{
+
+  #song_artist,
+  #song_name {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 35%;
@@ -39,49 +45,56 @@
     margin-left: 17%;
     margin-top: 2%;
   }
+
   #button_open_playlist {
     font-size: 1.5em;
     text-align: left;
-    padding: 0px;
+    padding: 0;
     background: none;
     border: none;
     position: absolute;
     top: 0.3em;
     right: 1em;
   }
-  #button_container{
+
+  #button_container {
     position: relative;
     margin-left: 16%;
     left: 16em;
-    bottom: 1em
+    bottom: 1em;
   }
-  .current-playlist-songs{
+
+  .current-playlist-songs {
     margin-top: 2em;
     height: 35em;
   }
-  .current-playlist-track{
+
+  .current-playlist-track {
     border: none;
     height: 2em;
     line-height: 2em;
     width: 100%;
     float: left;
-    text-align: left;  
+    text-align: left;
     text-overflow: clip;
     overflow: hidden;
     font-size: 14px;
     color: @text-color;
-    border-bottom: 1px solid lighten( @app-background-color, 10%);
-    border-top: 1px solid lighten( @app-background-color, 10%);
+    border-bottom: 1px solid lighten(@app-background-color, 10%);
+    border-top: 1px solid lighten(@app-background-color, 10%);
     margin-bottom: -1px;
-    background: none
+    background: none;
   }
+
   .current-playlist-track:hover {
     background: none;
     color: @text-color-highlight;
   }
-  .current-playlist-track-name{
+
+  .current-playlist-track-name {
     float: left;
     width: 55%;
     margin-right: 5%;
   }
 }
+.font ( 'icomoon', normal, normal, 'icomoon.ttf' );

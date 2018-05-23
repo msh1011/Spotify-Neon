@@ -1,11 +1,7 @@
 @root-path: 'atom://spotify-neon/resources';
 
-.font (@name, @weight, @style, @file)
-  when (@weight = normal)
-  and (@style = normal) {
-
+.font (@name, @weight, @style, @file) when (@weight = normal) and (@style = normal) {
   @font-path: '@{root-path}/@{file}';
-
   @font-face {
     font-family: @name;
     font-weight: @weight;
