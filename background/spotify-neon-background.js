@@ -27,7 +27,9 @@ export default class SpotifyNeonBackground {
         fetch("http://localhost:7888/refresh")
         return;
       }
-      atom.config.set("spotify-neon.current-playlist-url", response.context.href);
+      if(response.context != null){
+        atom.config.set("spotify-neon.current-playlist-url", response.context.href);
+      }
       atom.config.set("spotify-neon.song_name", response.item.name);
       var artists = ""
       for(var name in response.item.artists){
