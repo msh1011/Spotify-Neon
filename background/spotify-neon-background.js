@@ -23,31 +23,35 @@ export default class SpotifyNeonBackground {
 			}
 		};
 		fetch(playerUrl, playerHeader)
-			.then(response => response.json())
-			.then(response => {
-				// console.log(response)
-				if (response.error != undefined) {
-					server = require("../spotify-auth/app")
-					fetch("http://localhost:7888/refresh")
-					return;
+			.then(res => {
+				if (res.ok) {
+					res.json().then(response => {
+						if (response == undefined || response.error != undefined) {
+							server = require("../spotify-auth/app")
+							fetch("http://localhost:7888/refresh")
+							return;
+						}
+						if (response.context != null) {
+							atom.config.set("spotify-neon.current-playlist-url", response.context.href);
+						}
+						atom.config.set("spotify-neon.song_name", response.item.name);
+						var artists = ""
+						for (var name in response.item.artists) {
+							artists += response.item.artists[name].name + ", "
+						}
+						artists = artists.slice(0, -2);
+						atom.config.set("spotify-neon.song_artist", artists);
+						atom.config.set("spotify-neon.song_art_url", response.item.album.images[0].url);
+						if (!atom.config.get("spotify-neon.inform-outdated")) {
+							atom.config.set("spotify-neon.song_isplaying", response.is_playing);
+						}
+						atom.config.set("spotify-neon.inform-outdated", false);
+						atom.config.set("spotify-neon.song_progress", response.progress_ms);
+						atom.config.set("spotify-neon.song_length", response.item.duration_ms);
+					}).catch(err => {
+						console.log("Refresh Error", err)
+					})
 				}
-				if (response.context != null) {
-					atom.config.set("spotify-neon.current-playlist-url", response.context.href);
-				}
-				atom.config.set("spotify-neon.song_name", response.item.name);
-				var artists = ""
-				for (var name in response.item.artists) {
-					artists += response.item.artists[name].name + ", "
-				}
-				artists = artists.slice(0, -2);
-				atom.config.set("spotify-neon.song_artist", artists);
-				atom.config.set("spotify-neon.song_art_url", response.item.album.images[0].url);
-				if (!atom.config.get("spotify-neon.inform-outdated")) {
-					atom.config.set("spotify-neon.song_isplaying", response.is_playing);
-				}
-				atom.config.set("spotify-neon.inform-outdated", false);
-				atom.config.set("spotify-neon.song_progress", response.progress_ms);
-				atom.config.set("spotify-neon.song_length", response.item.duration_ms);
 			});
 	}
 
