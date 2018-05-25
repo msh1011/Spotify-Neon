@@ -74,12 +74,12 @@
     bottom: 1em;
   }
 
-  .current-playlist-songs {
+  .current-playlist-songs, .selected-playlist-songs {
     margin-top: 0em;
     height: 35em;
   }
 
-  .current-playlist-track {
+  .current-playlist-track, .selected-playlist-track {
     border: none;
     height: 2em;
     line-height: 2em;
@@ -96,7 +96,7 @@
     background: none;
   }
 
-  .current-playlist-track:hover {
+  .current-playlist-track:hover, .selected-playlist-track:hover {
     background: none;
     color: @text-color-highlight;
   }
@@ -106,7 +106,7 @@
   .active_song:hover {
     color: contrast(@text-color-subtle, black, white, 50%);
   }
-  .current-playlist-track-name {
+  .current-playlist-track-name, .selected-playlist-track-name {
     float: left;
     width: 55%;
     margin-right: 5%;
