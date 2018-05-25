@@ -1,11 +1,154 @@
 @import "ui-variables";
+@import 'functions';
 
 .spotify-neon {
-  button:hover {
+  #spotify_login:hover {
     background: lightgreen;
   }
-  button {
+
+  #spotify_login {
     color: black;
     font-size: 16px;
   }
+  .icon {
+    color: @text-color;
+    font-size: 2em;
+    text-align: left;
+    background: none;
+    border: none;
+    font-family: 'icomoon';
+  }
+  .icon-up:before{
+    content: "\ea41";
+  }
+  .icon-down:before{
+    content: "\ea43";
+  }
+  .playlist_nav_open:before{
+    font-size: 0.8em;
+    content: "\ea44";
+  }
+  
+  .icon-next:before {
+    content: "\ea24";
+  }
+
+  .icon-pause:before {
+    content: "\ea1d";
+  }
+
+  .icon-play:before {
+    content: "\ea1c";
+  }
+
+  .icon-previous:before {
+    content: "\ea23";
+  }
+
+  #song_artist,
+  #song_name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 35%;
+    white-space: nowrap;
+    height: 1.5em;
+    margin-left: 17%;
+    margin-top: 2%;
+  }
+
+  #button_open_playlist {
+    font-size: 1.5em;
+    text-align: left;
+    padding: 0;
+    background: none;
+    border: none;
+    position: absolute;
+    top: 0.3em;
+    right: 0em;
+  }
+  
+  #button_container {
+    position: relative;
+    margin-left: 16%;
+    left: 16em;
+    bottom: 1em;
+  }
+
+  .current-playlist-songs, .selected-playlist-songs {
+    margin-top: 0em;
+    height: 35em;
+  }
+
+  .current-playlist-track, .selected-playlist-track {
+    border: none;
+    height: 2em;
+    line-height: 2em;
+    width: 100%;
+    float: left;
+    text-align: left;
+    text-overflow: clip;
+    overflow: hidden;
+    font-size: 14px;
+    color: @text-color;
+    border-bottom: 1px solid lighten(@app-background-color, 10%);
+    border-top: 1px solid lighten(@app-background-color, 10%);
+    margin-bottom: -1px;
+    background: none;
+  }
+
+  .current-playlist-track:hover, .selected-playlist-track:hover {
+    background: none;
+    color: @text-color-highlight;
+  }
+  .active_song {
+    color: contrast(@text-color-subtle, black, white, 50%);
+  }
+  .active_song:hover {
+    color: contrast(@text-color-subtle, black, white, 50%);
+  }
+  .current-playlist-track-name, .selected-playlist-track-name {
+    float: left;
+    width: 55%;
+    margin-right: 5%;
+  }
+  .playlist_nav {
+    height: 100%;
+    width: 0;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: @app-background-color;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  .playlist_nav a {
+    padding: 0px 8px 1px 1em;
+    text-decoration: none;
+    font-size: 20px;
+    color: @text-color;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .playlist_nav a:hover {
+    color: @text-color-highlight;
+  }
+  .playlistHeader{
+    padding: 0px 8px 1px 0.5em;
+    text-decoration: none;
+    font-size: 22px;
+    color: @text-color-highlight;
+    display: block;
+  }
+
+  .playlist_nav .playlist_nav_close {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
 }
+.font ( 'icomoon', normal, normal, 'icomoon.ttf' );
