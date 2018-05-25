@@ -18,7 +18,17 @@
     border: none;
     font-family: 'icomoon';
   }
-
+  .icon-up:before{
+    content: "\ea41";
+  }
+  .icon-down:before{
+    content: "\ea43";
+  }
+  .playlist_nav_open:before{
+    font-size: 0.8em;
+    content: "\ea44";
+  }
+  
   .icon-next:before {
     content: "\ea24";
   }
@@ -54,9 +64,9 @@
     border: none;
     position: absolute;
     top: 0.3em;
-    right: 1em;
+    right: 0em;
   }
-
+  
   #button_container {
     position: relative;
     margin-left: 16%;
@@ -65,7 +75,7 @@
   }
 
   .current-playlist-songs {
-    margin-top: 2em;
+    margin-top: 0em;
     height: 35em;
   }
 
@@ -100,6 +110,38 @@
     float: left;
     width: 55%;
     margin-right: 5%;
+  }
+  .playlist_nav {
+    height: 100%;
+    width: 0;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: @app-background-color;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  .playlist_nav a {
+    padding: 0px 8px 1px 1em;
+    text-decoration: none;
+    font-size: 20px;
+    color: @text-color;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .playlist_nav a:hover {
+    color: @text-color-highlight;
+  }
+
+  .playlist_nav .playlist_nav_close {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
   }
 }
 .font ( 'icomoon', normal, normal, 'icomoon.ttf' );

@@ -5,7 +5,7 @@ var redirect_uri = 'http://localhost:7888/callback/';
 var data = fs.readFileSync(__dirname + "/public/index.html");
 require("http").createServer(function(req, res) {
 	if (req.url.startsWith('/callback')) {
-		var code = /[A-Za-z0-9\-\_]{358}/g.exec(req.url)[0];
+		var code = /[A-Za-z0-9\-\_]{414}/g.exec(req.url)[0];
 		var authUrl = 'https://accounts.spotify.com/api/token';
 		var bodyUri = 'redirect_uri=' + encodeURIComponent(redirect_uri) +
 			'&code=' + encodeURIComponent(code) +
@@ -43,7 +43,6 @@ require("http").createServer(function(req, res) {
 		fetch(refreshUrl, refreshHeader)
 			.then(response => response.json())
 			.then(response => {
-				console.log(response)
 				atom.config.set("spotify-neon.access_token", response.access_token)
 				if (response.refresh_token != undefined) {
 					atom.config.set("spotify-neon.refresh_token", response.refresh_token)
@@ -51,7 +50,13 @@ require("http").createServer(function(req, res) {
 			});
 	}
 	if (req.url.startsWith('/login')) {
-		var scope = 'user-read-private user-read-email user-modify-playback-state user-read-currently-playing user-read-playback-state';
+		var scope = 'user-read-private ' +
+			'user-read-email ' +
+			'user-modify-playback-state ' +
+			'user-read-currently-playing ' +
+			'user-read-playback-state ' +
+			'user-library-read ' +
+			'playlist-read-private';
 		var auth = 'https://accounts.spotify.com/authorize?' +
 			'response_type=code' +
 			'&client_id=' + encodeURIComponent(client_id) +

@@ -32,6 +32,7 @@ export default class SpotifyNeonBackground {
 					}
 					if (response.context != null) {
 						atom.config.set("spotify-neon.current-playlist-url", response.context.href);
+						atom.config.set("spotify-neon.current-playlist-uri", response.context.uri);
 					}
 					atom.config.set("spotify-neon.song_name", response.item.name);
 					var artists = ""
@@ -47,8 +48,9 @@ export default class SpotifyNeonBackground {
 					atom.config.set("spotify-neon.inform-outdated", false);
 					atom.config.set("spotify-neon.song_progress", response.progress_ms);
 					atom.config.set("spotify-neon.song_length", response.item.duration_ms);
+
 				}).catch(err => {
-					console.log("Refresh Error", err)
+					// console.log("Refresh Error", err)
 				})
 			});
 	}
