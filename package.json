@@ -1,7 +1,7 @@
 {
   "name": "spotify-neon",
   "main": "./lib/spotify-neon",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Control spotify from within Atom",
   "keywords": [],
   "repository": "https://github.com/msh1011/Spotify-Neon",
