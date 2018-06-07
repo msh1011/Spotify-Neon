@@ -48,7 +48,8 @@ export default class SpotifyNeonBackground {
 					atom.config.set("spotify-neon.inform-outdated", false);
 					atom.config.set("spotify-neon.song_progress", response.progress_ms);
 					atom.config.set("spotify-neon.song_length", response.item.duration_ms);
-
+					atom.config.set("spotify-neon.active_device", response.device.id);
+					
 				}).catch(err => {
 					// console.log("Refresh Error", err)
 				})
